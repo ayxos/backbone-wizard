@@ -1,1 +1,135 @@
-#wizard
+.container
+  section#typeahead
+    .page-header
+      h1
+        | Wizard for Backbone
+        small(style="margin:1%;") backbone-wizard.js
+    .row
+      h2 Live demo
+      .col-md-12(style="margin-bottom: 4%; border: solid 1px rgb(219, 219, 219); padding:3%;")
+        #wizardContainer
+      .col-md-3
+        h3 Author
+        p Marco Antonio Pajares
+        a(href="http://ayxos.com/backbone-wizard/") http://ayxos.com/
+        br
+        a(href="https://github.com/cybermarkus1/backbone-wizard") github code
+
+        h3 About
+        p Create a custom backbone-wizard.
+        ul
+          li must be used as a requireJS component
+        p
+          a.btn.btn-primary(href='js/common/wizard/views/backbone_wizard.js', target='_blank') Download
+
+        h3 Change log
+        dl
+          dt v@1.2.0
+          dt 09/08/2014
+          dd Fixed bower path, uglify js in a single file.
+
+      .col-md-9
+
+        pre.prettyprint.linenums.
+
+            var Backbone_wizard = require('common/wizard/views/backbone_wizard')
+            //Steps
+            var WizardSteps = [
+                { view: require('apps/WizardExample/steps/init/view'), title:'init', intro:'init slide'}
+              , { view: require('apps/WizardExample/steps/process/view'), title:'process', intro:'process slide'}
+              , { view: require('apps/WizardExample/steps/random/view'), title:'choose', intro:'choose slide'}
+              , { view: require('apps/WizardExample/steps/finish/view'), title:'finish', intro:'finish slide'}
+
+            ]
+
+            return Backbone.View.extend({
+
+              render:function () {
+                console.log('rendering....' );
+                var self = this;
+                $(this.el).html(this.template() );
+
+                window.wizard = new Backbone_wizard({
+                  el: self.$el.find('#wizardContainer'),
+                  steps: WizardSteps
+                });
+
+                return this;
+              }
+
+            });
+        hr
+        h2 Get backbone-wizard.js
+        p Get the backbone-wizard via bower:
+        pre.prettyprint.linenums.
+          bower install backbone-wizard
+        h3 Options
+        table.table.table-bordered.table-striped
+          thead
+            tr
+              th(style='width: 100px;') Name
+              th(style='width: 50px;') type
+              th(style='width: 100px;') example
+              th description
+          tbody
+            tr
+              td el
+              td div
+              td 'this.$el.find(#div-name-to-print-wizard)'
+              td div to render wizard.
+            tr
+              td steps
+              td array
+              td [{view:view;title:'title';intro:'intro'}]
+              td array with slides views
+            tr
+              td steps.view
+              td path
+              td 'apps/WizardExample/steps/init/view'
+              td set the slide view path.
+            tr
+              td steps.title
+              td string
+              td 'firs step title'
+              td set a slide title
+            tr
+              td steps.intro
+              td string
+              td 'intro firs step'
+              td set a slide intro
+        h3 Markup
+        p Format a component.
+        pre.prettyprint.linenums.
+          <div id="wizardContainer"></div>
+
+        h3 Methods
+        h4 .addStep(step)
+        pre.prettyprint.linenums.
+          .addStep({
+            view: require('apps/WizardExample/steps/summary/view'),
+            title:'B option',
+            intro:'you choose option B'
+          })
+        p add a step.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

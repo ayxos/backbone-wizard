@@ -15,7 +15,7 @@ define(function(require) {
   , template = require('tpl/apps/WizardExample/templates/exampleTpl')
 
   // just for test
-  , WizardExample = require('common/wizard/views/wizardBaseView')
+  , Backbone_wizard = require('common/wizard/views/backbone_wizard')
   //Steps
   , WizardSteps = [
       { view: require('apps/WizardExample/steps/init/view'), title:'init', intro:'init slide'}
@@ -47,8 +47,8 @@ define(function(require) {
       var self = this;
       $(this.el).html(this.template() );
 
-      window.wizard = new WizardExample({
-        el: self.$el.find('#wizard'),
+      window.wizard = new Backbone_wizard({
+        el: self.$el.find('#wizardContainer'),
         steps: WizardSteps
       });
 

@@ -1,22 +1,23 @@
 {
   "name": "Backbone-wizard",
-  "version": "1.0.0",
+  "version": "1.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cybermarkus1/backbone-wizard.git"
+  },
+  "authors": [
+    { "name": "Marco Antonio Pajares Silva", "email": "cybermarkus1@gmail.com"," homepage": "http://ayxos.com" }
+  ],
+  "main": [
+    "./public/js/common/wizard/views/backbone_wizard.js"
+  ],
   "description": "a Backbone-wizard tool",
   "moduleType": [
     "amd"
   ],
-  "authors": [
-    "M.A.P.S"
-  ],
-  "license": "M.A.P.S",
-  "homepage": "http://ayxos.com",
-  "private": true,
   "ignore": [
-    "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "dependencies": {
     "backbone-1.1.2": "backbone#1.1.2",

@@ -1,6 +1,8 @@
 Backbone-wizard
 ===================
 
+live version = http://ayxos.com/backbone-wizard/
+
 A tool for create dinamic Wizards using Backbone
 
 Based on malandrew's gist: https://gist.github.com/malandrew/1112194
@@ -14,12 +16,24 @@ using:
 - Backbone
 - window.wizard (in order to get a singleton reference to add/remove slides dynamically)
 
+![ScreenShot](http://oi61.tinypic.com/122nepx.jpg)
 
+Install using bower
+====================
+```
+bower install backbone-wizard
+```
+
+- *need RequireJs
+
+
+How-to use it
+====================
 
 On your View just list your steps views in an array and create a Wizard using this array.
 
 ```
-  var Wizard = require('common/wizard/views/wizardBaseView');
+  var Wizard = require('path-to-backbone-wizard-lib');
   
   //Steps
   var WizardSteps = [
@@ -40,6 +54,9 @@ On your View just list your steps views in an array and create a Wizard using th
   
   
 ```
+
+Add slides dynamically
+====================
 
 If you need to create dynamic wizard using Json just go to the step view and run the following code:
 

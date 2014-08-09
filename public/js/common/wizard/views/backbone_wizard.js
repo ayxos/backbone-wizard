@@ -1,11 +1,17 @@
+/*!
+ * Backbone-wizard v1.2.0 (http://http://ayxos.com/backbone-wizard/)
+ * Copyright 2014 Marco Antonio Pajares Silva.
+ * Licensed under MIT
+ */
+
 define(function(require) {
   'use strict';
 
-  var Backbone = require('backbone')
-    , wizardTpl = require('tpl/common/wizard/templates/wizardTpl')
-  ;
+  var Backbone = require('backbone');
 
-  return Backbone.View.extend({
+  var template = '<header><div id="progress_indicator"></div><h2 id="step_title"></h2><p id="step_instructions"></p></header><div class="current_step_container"></div><footer><div id="buttons"><button id="prev_step_button" class="btn btn-info">Prev:</button><button id="next_step_button" class="btn btn-info">Next:</button></div></footer>';
+
+  var WizardInit = Backbone.View.extend({
 
     id: 'wizard',
 
@@ -18,14 +24,13 @@ define(function(require) {
     initialize: function(arg) {
       _.bindAll(this, 'render');
       console.log('arg',arg);
-      this.model = arg.model;
       this.steps = arg.steps;
       this.currentStep = 0;
-      this.template = wizardTpl;
+      this.template = template;
     },
 
     render: function() {
-      $(this.el).html(this.template());
+      $(this.el).html(_.template(template));
 
       this.progressIndicator = this.$("#progress_indicator");
       this.title = this.$("h2#step_title");
@@ -153,5 +158,56 @@ define(function(require) {
       // TODO
     }
 
+  });
+
+  return Backbone.View.extend({
+
+    initialize: function(arg) {
+      _.bindAll(this, 'render', 'wizardMethod');
+      this.steps = this.turnSteps(arg.steps);
+      this.render();
+    },
+
+    turnSteps:function(WizardSteps){
+      this.steps = [];
+      console.log('number of slides', WizardSteps.length);
+
+      for(var i=0; i<WizardSteps.length;i++){
+        this.steps.push({
+          step_number  :        i,
+          title        :        WizardSteps[i].title,
+          instructions :        WizardSteps[i].intro,
+          view         :        new WizardSteps[i].view()
+        });
+      }
+      return this.steps;
+    },
+
+    render: function() {
+      this.wizardMethod();
+      return this;
+    },
+
+    addStep:function(step){
+      console.log('adding step WBV');
+      this.wizard.addStep({
+        step_number  :        window.wizard.wizard.currentStep + 1,
+        title        :        step.title,
+        instructions :        step.intro,
+        view         :        new step.view()
+      });
+    },
+
+    wizardMethod: function() {
+      var steps = this.steps;
+
+      this.wizard = new WizardInit({
+        steps : steps
+      });
+
+      console.log('view',this.wizard);
+
+      $(this.el).html(this.wizard.render().el);
+    }
   });
 });
