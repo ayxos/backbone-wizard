@@ -1,6 +1,8 @@
 Backbone-wizard
 ===================
 
+live version = http://ayxos.com/backbone-wizard/
+
 A tool for create dinamic Wizards using Backbone
 
 Based on malandrew's gist: https://gist.github.com/malandrew/1112194
