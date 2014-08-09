@@ -14,6 +14,8 @@ using:
 - Backbone
 - window.wizard (in order to get a singleton reference to add/remove slides dynamically)
 
+![ScreenShot](http://oi61.tinypic.com/122nepx.jpg)
+
 
 
 On your View just list your steps views in an array and create a Wizard using this array.
