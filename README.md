@@ -10,7 +10,7 @@ using:
 - jade
 - jquery
 - Backbone
-- window (in order to get a singleton reference to add/remove slides dynamically
+- window.wizard (in order to get a singleton reference to add/remove slides dynamically)
 
 
 
