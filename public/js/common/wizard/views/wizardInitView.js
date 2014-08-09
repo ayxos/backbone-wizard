@@ -51,7 +51,8 @@ define(function(require) {
     addStep: function(step){
       console.log('adding step WIV',step);
       console.log('steps', this.steps);
-      this.steps.push(step);
+      this.steps.splice(this.currentStep + 1,0,step);
+      // this.steps.push(step);
     },
 
     renderCurrentStep: function() {
