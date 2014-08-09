@@ -1,4 +1,4 @@
-backbone-wizard
-===============
+socialChat_Backbone
+===================
 
-a wizard component for backbone
+a chatSocial and todo APP
