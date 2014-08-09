@@ -12,19 +12,18 @@ define(function(require) {
   var Backbone = require('backbone')
 
   // templates
-  , CampaignBaseTpl = require('tpl/apps/Wizard/templates/wizardTpl')
+  , CampaignBaseTpl = require('tpl/apps/WizardExample/templates/exampleTpl')
 
   // just for test
-  , Wizard = require('common/wizard/views/wizardBaseView')
+  , WizardExample = require('common/wizard/views/wizardBaseView')
   //Steps
   , WizardSteps = [
-      { view: require('apps/Wizard/steps/finish/view'), title:'finish', intro:'lolo'}
-    , { view: require('apps/Wizard/steps/init/view'), title:'init', intro:'jojo'}
-    , { view: require('apps/Wizard/steps/process/view'), title:'process', intro:'baba'}
-    , { view: require('apps/Wizard/steps/random/view'), title:'choose', intro:'wiii'}
-  ]
+      { view: require('apps/WizardExample/steps/init/view'), title:'init', intro:'init slide'}
+    , { view: require('apps/WizardExample/steps/process/view'), title:'process', intro:'process slide'}
+    , { view: require('apps/WizardExample/steps/random/view'), title:'choose', intro:'choose slide'}
+    , { view: require('apps/WizardExample/steps/finish/view'), title:'finish', intro:'finish slide'}
 
-  , APP = require('app')
+  ]
 
   ;
 
@@ -48,7 +47,7 @@ define(function(require) {
       var self = this;
       $(this.el).html(this.template() );
 
-      APP.wizard = new Wizard({
+      window.wizard = new WizardExample({
         el: self.$el.find('#wizard'),
         steps: WizardSteps
       });

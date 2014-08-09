@@ -2,7 +2,7 @@ define(function(require) {
   'use strict';
 
   var Backbone = require('backbone')
-    , wizardTpl = require('tpl/apps/Wizard/steps/finish/template')
+    , wizardTpl = require('tpl/apps/WizardExample/steps/summary/template')
   ;
 
   return Backbone.View.extend({

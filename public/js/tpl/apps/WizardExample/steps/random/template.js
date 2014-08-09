@@ -4,7 +4,7 @@ attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow |
 var buf = [];
 with (locals || {}) {
 var interp;
-buf.push('random slide<br/>hi, this is the random slide<br/><button id="3g" value="3g" class="btn btn-primary">3g</button><button id="wifi" value="wifi" class="btn btn-primary">wifi</button>');
+buf.push('random slide<br/>hi, this is the random slide<br/><button value="a" class="btn btn-primary">Option A</button><button value="b" class="btn btn-primary">Option B</button>');
 }
 return buf.join("");
 };

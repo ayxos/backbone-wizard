@@ -2,20 +2,18 @@ define(function(require) {
   'use strict';
 
   var Backbone = require('backbone')
-    , wizardTpl = require('tpl/apps/Wizard/steps/random/template')
-    , g = {
-      view: require('apps/Wizard/steps/summary/view'),
-      title:'3g',
-      intro:'3ggg'
+    , wizardTpl = require('tpl/apps/WizardExample/steps/random/template')
+    , a = {
+      view: require('apps/WizardExample/steps/summary/view'),
+      title:'A option',
+      intro:'you choose option A'
     }
 
-    , wifi = {
-      view: require('apps/Wizard/steps/summary/view'),
-      title:'wifi',
-      intro:'wiifi'
+    , b = {
+      view: require('apps/WizardExample/steps/summary/view'),
+      title:'B option',
+      intro:'you choose option B'
     }
-
-    , APP = require('app')
 
     ;
 
@@ -33,11 +31,11 @@ define(function(require) {
     getStep: function(event){
       event.preventDefault();
       console.log('changing view');
-      if(event.currentTarget.id == '3g'){
-        APP.wizard.addStep(g);
+      if(event.currentTarget.value == 'a'){
+        window.wizard.addStep(a);
       }
       else{
-        APP.wizard.addStep(wifi);
+        window.wizard.addStep(b);
       }
     },
 

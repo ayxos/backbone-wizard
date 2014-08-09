@@ -13,7 +13,6 @@ require.config({
 
   },
 
-
   shim: {
     jquery: {
       exports: '$'
@@ -38,22 +37,9 @@ require.config({
 define(function(require) {
   'use strict';
 
-
-  var $ = require('jquery')
-  , APP = require('app')
-  , Backbone = require('backbone')
+  var Backbone = require('backbone')
   , AppRouter = require('apps/router')
-
   ;
-
-  Backbone.View.prototype.close = function () {
-    console.log('Closing view ' + this);
-    if (this.beforeClose) {
-      this.beforeClose();
-    }
-    this.remove();
-    this.unbind();
-  };
 
   new AppRouter({});
 

@@ -14,6 +14,8 @@ define(function(require) {
   'use strict';
   var Backbone = require('backbone')
 
+  , WizardExample = require('apps/WizardExample/views/WizardExampleView')
+
   ;
 
   return Backbone.Router.extend({
@@ -25,32 +27,13 @@ define(function(require) {
 
     routes: {
       "": 'Wizard',
+      "/": 'Wizard',
     },
 
     // sections
-    /**
-     * A method to render Backbone apps
-     * @name loadBackbone
-     * first, require this module
-     * rendering Base View
-     * assign to section-container div
-     * @property
-     */
-
-    loadBackbone: function(appName){
-      console.info("navigateTo: " + appName);
-      var route = 'apps/' + appName + '/views/' + appName + 'BaseView';
-      var self = this;
-
-      require([route], function (RequireBaseView) {
-        var BaseView = new RequireBaseView(self);
-        $('#backbone').html( BaseView.render().el );
-      });
-
-    },
 
     Wizard: function(){
-      this.loadBackbone('Wizard');
+      $('#backbone').html( (new WizardExample()).render().el );
     },
 
   });
