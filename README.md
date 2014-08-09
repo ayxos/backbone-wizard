@@ -8,7 +8,11 @@ Based on malandrew's gist: https://gist.github.com/malandrew/1112194
 using:
 - require
 - jade
-- 
+- jquery
+- Backbone
+- window (in order to get a singleton reference to add/remove slides dynamically
+
+
 
 On your View just list your steps views in an array and create a Wizard using this array.
 
