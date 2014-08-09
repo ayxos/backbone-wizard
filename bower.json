@@ -9,7 +9,7 @@
     { "name": "Marco Antonio Pajares Silva", "email": "cybermarkus1@gmail.com"," homepage": "http://ayxos.com" }
   ],
   "main": [
-    "./public/js/views/backbone_wizard.js"
+    "./public/js/common/wizard/views/backbone_wizard.js"
   ],
   "description": "a Backbone-wizard tool",
   "moduleType": [
