@@ -1,4 +1,4 @@
-Wizard_Backbone
+Backbone-wizard
 ===================
 
 a tool for create dinamic Wizards using Backbone
