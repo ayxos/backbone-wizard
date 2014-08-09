@@ -24,7 +24,7 @@ Install using bower
 bower install backbone-wizard
 ```
 
-need RequireJs
+- *need RequireJs
 
 
 How-to use it
