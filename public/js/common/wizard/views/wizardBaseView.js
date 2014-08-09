@@ -36,9 +36,8 @@ define(function(require) {
 
     addStep:function(step){
       console.log('adding step WBV');
-      var self = this;
       this.wizard.addStep({
-        step_number  :        self.steps.length,
+        step_number  :        window.wizard.wizard.currentStep + 1,
         title        :        step.title,
         instructions :        step.intro,
         view         :        new step.view()

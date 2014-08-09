@@ -48,11 +48,18 @@ define(function(require) {
       }, this));
     },
 
-    addStep: function(step){
-      console.log('adding step WIV',step);
+    addStep: function(newstep){
+      console.log('adding step WIV',newstep);
       console.log('steps', this.steps);
-      this.steps.splice(this.currentStep + 1,0,step);
-      // this.steps.push(step);
+
+      for(var i=this.currentStep + 1;i<this.steps.length;i++){
+        var auxStep = this.steps[i];
+        auxStep.step_number = this.steps[i].step_number + 1;
+      }
+
+      this.steps.splice(this.currentStep + 1,0,newstep);
+
+      this.renderCurrentStep();
     },
 
     renderCurrentStep: function() {
