@@ -1,7 +1,7 @@
 {
-  "name": "SocialChat",
+  "name": "Backbone-wizard",
   "version": "1.0.0",
-  "description": "Chat",
+  "description": "a Backbone-wizard tool",
   "moduleType": [
     "amd"
   ],

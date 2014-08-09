@@ -1,5 +1,7 @@
 {
-  "name": "chat",
+  "name": "Backbone-wizard",
+  "author":"M.A.P.S",
+  "url":"ayxos.com",
   "dependencies": {
     "express": "^3.8.0",
     "grunt-bower-task": "^0.3.4",

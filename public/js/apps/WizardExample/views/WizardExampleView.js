@@ -2,9 +2,9 @@ define(function(require) {
   'use strict';
 
   /**
-  * Module Dictionaries Base init view
-  * path: apps/Dictionaries/views/DictionariesBaseView
-  * @class DictionariesBaseView
+  * Module wizard Base init view
+  * path: apps/wizard/views/wizard
+  * @class wizard
   */
 
   require('bootstrap_3');
@@ -12,7 +12,7 @@ define(function(require) {
   var Backbone = require('backbone')
 
   // templates
-  , CampaignBaseTpl = require('tpl/apps/WizardExample/templates/exampleTpl')
+  , template = require('tpl/apps/WizardExample/templates/exampleTpl')
 
   // just for test
   , WizardExample = require('common/wizard/views/wizardBaseView')
@@ -38,7 +38,7 @@ define(function(require) {
     */
 
     initialize:function () {
-      this.template = CampaignBaseTpl;
+      this.template = template;
       console.log('init BaseView' );
     },
 

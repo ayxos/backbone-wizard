@@ -1,5 +1,4 @@
 require.config({
-  //urlArgs: "bust=${project.version}",
   waitSeconds: 0,
   baseUrl: 'js',
   paths: {

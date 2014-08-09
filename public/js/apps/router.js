@@ -19,11 +19,6 @@ define(function(require) {
   ;
 
   return Backbone.Router.extend({
-    /**
-     * A map bindings routes and methods
-     * @name RouterModule.Router.Workspace.prototype.routes
-     * @property
-     */
 
     routes: {
       "": 'Wizard',
