@@ -27,11 +27,13 @@ bower install backbone-wizard
 need RequireJs
 
 
+How-to use it
+====================
 
 On your View just list your steps views in an array and create a Wizard using this array.
 
 ```
-  var Wizard = require('common/wizard/views/wizardBaseView');
+  var Wizard = require('path-to-backbone-wizard-lib');
   
   //Steps
   var WizardSteps = [
@@ -52,6 +54,9 @@ On your View just list your steps views in an array and create a Wizard using th
   
   
 ```
+
+Add slides dynamically
+====================
 
 If you need to create dynamic wizard using Json just go to the step view and run the following code:
 
