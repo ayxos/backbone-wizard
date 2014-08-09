@@ -1,7 +1,6 @@
 {
   "name": "Backbone-wizard",
   "version": "1.0.0",
-  "private":"false",
   "repository": {
     "type": "git",
     "url": "git://github.com/cybermarkus1/backbone-wizard.git"
