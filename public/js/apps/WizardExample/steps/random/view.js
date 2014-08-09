@@ -20,7 +20,8 @@ define(function(require) {
   return Backbone.View.extend({
 
     events:{
-      'click button':'getStep'
+      'click button#a':'getStep',
+      'click button#b':'getStep'
     },
 
     initialize: function() {
@@ -30,6 +31,7 @@ define(function(require) {
 
     getStep: function(event){
       event.preventDefault();
+      event.stopPropagation();
       console.log('changing view');
       if(event.currentTarget.value == 'a'){
         window.wizard.addStep(a);
