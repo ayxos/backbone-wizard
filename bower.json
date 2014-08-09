@@ -1,12 +1,20 @@
 {
   "name": "Backbone-wizard",
   "version": "1.0.0",
+  "private":"false",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cybermarkus1/backbone-wizard.git"
+  },
+  "authors": [
+    { "name": "Marco Antonio Pajares Silva", "email": "cybermarkus1@gmail.com"," homepage": "http://ayxos.com" }
+  ],
+  "main": [
+    "./public/"
+  ],
   "description": "a Backbone-wizard tool",
   "moduleType": [
     "amd"
-  ],
-  "authors": [
-    "M.A.P.S"
   ],
   "license": "M.A.P.S",
   "homepage": "http://ayxos.com",

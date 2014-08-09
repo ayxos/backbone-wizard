@@ -33,14 +33,6 @@ module.exports = function(grunt) {
         src: './public/libs/vendors/requirejs/require.js',
         dest: './public/libs',
         filter: 'isFile'
-      },
-      fonts: {
-        expand: true,
-        cwd: './public/libs/vendors/bootstrap-3',
-        src: '**',
-        dest: './public/fonts',
-        flatten: true,
-        filter: 'isFile',
       }
     },
 
