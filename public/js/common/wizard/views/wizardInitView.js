@@ -18,7 +18,6 @@ define(function(require) {
     initialize: function(arg) {
       _.bindAll(this, 'render');
       console.log('arg',arg);
-      this.model = arg.model;
       this.steps = arg.steps;
       this.currentStep = 0;
       this.template = wizardTpl;
