@@ -18,6 +18,14 @@ using:
 
 ![ScreenShot](http://oi61.tinypic.com/122nepx.jpg)
 
+Install using bower
+====================
+```
+bower install backbone-wizard
+```
+
+need RequireJs
+
 
 
 On your View just list your steps views in an array and create a Wizard using this array.
