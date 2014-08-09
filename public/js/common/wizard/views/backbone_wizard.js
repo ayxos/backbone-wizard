@@ -1,3 +1,9 @@
+/*!
+ * Backbone-wizard v1.1.0 (http://http://ayxos.com/backbone-wizard/)
+ * Copyright 2014 Marco Antonio Pajares Silva.
+ * Licensed under MIT
+ */
+
 define(function(require) {
   'use strict';
 
