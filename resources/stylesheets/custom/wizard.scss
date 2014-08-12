@@ -31,4 +31,23 @@
     min-width: 300px;
 
   }
+
+}
+
+.col-md-12{
+  margin-bottom: 4%;
+  border: solid 1px rgb(219, 219, 219);
+  padding: 3%;
+}
+
+
+@media screen and (max-width: 758px) {
+  .container{
+    padding: 10px 30px;
+  }
+
+  .col-md-12{
+    margin-bottom:20%;
+    border:none;
+  }
 }
