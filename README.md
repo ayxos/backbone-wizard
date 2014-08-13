@@ -16,7 +16,7 @@ using:
 - Backbone
 - window.wizard (in order to get a singleton reference to add/remove slides dynamically)
 
-![ScreenShot](http://oi61.tinypic.com/122nepx.jpg)
+![ScreenShot](http://i58.tinypic.com/wulzt4.png)
 
 Install using bower
 ====================
