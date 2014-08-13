@@ -15,7 +15,7 @@ define(function(require) {
   , template = require('tpl/apps/WizardExample/templates/exampleTpl')
 
   // just for test
-  , Backbone_wizard = require('common/wizard/views/backbone_wizard')
+  , Backbone_wizard = require('common/backbone-wizard')
   //Steps
   , WizardSteps = [
       { view: require('apps/WizardExample/steps/init/view'), title:'init', intro:'init slide'}
