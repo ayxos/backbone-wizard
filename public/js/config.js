@@ -1,6 +1,6 @@
 require.config({
   waitSeconds: 0,
-  baseUrl: 'public/js',
+  baseUrl: 'js',
   paths: {
     // Libraries
     jquery      : "../libs/vendors/jquery/jquery",
@@ -8,7 +8,8 @@ require.config({
     handlebars  : "../libs/vendors/handlebars/handlebars",
     underscore  : "../libs/vendors/underscore/underscore",
     jade        : '../libs/vendors/jade/runtime',
-    bootstrap_3 : '../libs/vendors/bootstrap-3/bootstrap'
+    bootstrap_3 : '../libs/vendors/bootstrap-3/bootstrap',
+    d3          : '../libs/vendors/d3/d3'
 
   },
 

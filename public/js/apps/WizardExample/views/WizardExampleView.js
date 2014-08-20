@@ -49,7 +49,8 @@ define(function(require) {
 
       window.wizard = new Backbone_wizard({
         el: self.$el.find('#wizardContainer'),
-        steps: WizardSteps
+        steps: WizardSteps,
+        tree:true
       });
 
       return this;
