@@ -3,13 +3,13 @@ require.config({
   baseUrl: 'js',
   paths: {
     // Libraries
-    jquery      : "../libs/vendors/jquery/jquery",
-    backbone    : '../libs/vendors/backbone-1.1.2/backbone',
-    handlebars  : "../libs/vendors/handlebars/handlebars",
-    underscore  : "../libs/vendors/underscore/underscore",
-    jade        : '../libs/vendors/jade/runtime',
-    bootstrap_3 : '../libs/vendors/bootstrap-3/bootstrap',
-    d3          : '../libs/vendors/d3/d3'
+    jquery      : "public/libs/vendors/jquery/jquery",
+    backbone    : 'public/libs/vendors/backbone-1.1.2/backbone',
+    handlebars  : "public/libs/vendors/handlebars/handlebars",
+    underscore  : "public/libs/vendors/underscore/underscore",
+    jade        : 'public/libs/vendors/jade/runtime',
+    bootstrap_3 : 'public/libs/vendors/bootstrap-3/bootstrap',
+    d3          : 'public/libs/vendors/d3/d3'
 
   },
 
