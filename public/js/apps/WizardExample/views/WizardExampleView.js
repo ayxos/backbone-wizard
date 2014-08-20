@@ -7,8 +7,6 @@ define(function(require) {
   * @class wizard
   */
 
-  require('bootstrap_3');
-
   var Backbone = require('backbone')
 
   // templates
