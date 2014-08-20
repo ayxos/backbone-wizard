@@ -1,34 +1,68 @@
 #wizard{
   padding: 2%;
-  label{
-    padding: 1% 2%;
-
-    title{
-      display:block;
+  #progress_indicator{
+    label{
+      margin: 2%;
+      cursor: pointer;
+      padding: 1%;
+      title{
+        display:block;
+        text-align: center;
+      }
+      span{
+        display: block;
+        border-radius: 50%;
+        background: greenyellow;
+        width: 20px;
+        height: 22px;
+        text-align: center;
+        margin: auto auto;
+      }
+      &:hover{
+        background: #5bc0de;
+        border-radius: 5%;
+      }
     }
-    span{
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      background-color: rgb(140, 219, 140);
-      margin: auto auto;
-      display: block;
-      text-align: center;
-    }
-    &:hover{
-      background: #5bc0de;
-      border-radius:10px;
-    }
-  }
-
-  button{
-    margin: 1%;
   }
 
   #buttons{
     float:right;
     margin-right: 4%;
-    min-width: 300px;
+    min-width: 310px;
 
+    button{
+      margin: 1%;
+      .prev_step_button{
+        margin:1%;
+      }
+      .next_step_button{
+        margin:4%;
+      }
+    }
+  }
+
+  button#showTree {
+    margin-top: 100px;
+  }
+
+  #tree{
+    background: gainsboro;
+    width: 90%;
+    margin: auto auto;
+    border: solid 1px;
+    margin: 4%;
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }
+
+    .node text { font: 12px sans-serif; }
+
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2px;
+    }
   }
 }
