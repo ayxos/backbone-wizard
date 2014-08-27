@@ -25,9 +25,15 @@
           li must be used as a requireJS component.
           li if you want to use tree, d3 lib is needed.
         p
-          a.btn.btn-primary(href='public/js/common/backbone-wizard.js', target='_blank') Download
+          a.btn.btn-primary(href='public/js/common/backbone-wizard.js', target='_blank') backbone-wizard.js
+        p
+          a.btn.btn-primary(href='public/backbone-wizard.min.js', target='_blank') backbone-wizard.min.js
 
         h3 Change log
+        dl
+          dt v@1.4.1
+          dt 27/08/2014
+          dd Add tree actions (Drag, move, click and hover).
         dl
           dt v@1.4.0
           dt 20/08/2014
@@ -44,25 +50,36 @@
       .col-md-9
 
         hr
-        h2 New Tree Feature
-        p if you dont want to create a tree, set tree to 
-        b false
+        h2 New Tree Feature, new tree actions! Drag, move, click and hover
         p if you dont set tree, by default is set to false
         pre.prettyprint.linenums.
           window.wizard = new Backbone_wizard({
             el: self.$el.find('#wizardContainer'),
             steps: WizardSteps,
-            tree: true
+            tree:{
+              render: true,
+              // could be rect || circle, circle buy default if its not defined.
+              shape:'circle'
+            }
           });
 
         hr
         h2 RequireJs Config file
+
         pre.prettyprint.linenums.
 
           ...
           
-          d3          : 'path/to/lib'
+          d3          : 'path/to/d3/lib'
           
+          ...
+
+          shim: {
+              'path/to/backbone-wizard/lib':{
+                deps:['underscore', 'backbone', 'd3']
+              }
+          }
+
           ...
 
         hr
@@ -90,14 +107,20 @@
                 window.wizard = new Backbone_wizard({
                   el: self.$el.find('#wizardContainer'),
                   steps: WizardSteps,
-                  tree: true
+                  tree:{
+                    render: true,
+                    // could be rect || circle, circle buy default if its not defined.
+                    shape:'circle'
+                  }
                 });
 
                 return this;
               }
 
             });
-
+        hr
+        h2 Tree style code
+        a(href="http://tutorials.jenkov.com/svg/svg-and-css.html") Style SVG
         hr
         h2 Style Css code
         pre.prettyprint.linenums.
@@ -198,13 +221,18 @@
             tr
               td steps.intro
               td string
-              td 'intro firs step'
+              td 'intro first step'
               td set a slide intro
             tr
-              td tree
+              td tree.render
               td boolean
               td false
               td set if create a tree or not
+            tr
+              td tree.shape
+              td String
+              td 'circle'
+              td set if show nodes as circles or as rectangles
         h3 Markup
         p Format a component.
         pre.prettyprint.linenums.

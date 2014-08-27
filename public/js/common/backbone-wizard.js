@@ -1,19 +1,43 @@
 /*!
- * Backbone-wizard v1.4.0 (http://http://ayxos.com/backbone-wizard/)
+ * Backbone-wizard v1.4.1 (http://http://ayxos.com/backbone-wizard/)
  * Copyright 2014 Marco Antonio Pajares Silva.
  * Licensed under MIT
  */
 
 define(function(require) {
   'use strict';
+  
+  var Backbone;
 
-  require('d3');
+  // if exist requireJs
+  if (typeof(require) != 'undefined'){
+    if(!require('underscore') || !require('d3') || !require('backbone')){
+      console.log('requireJs shim configuration:\npath-to-lib:{\ndeps:["underscore","backbone", "d3"]\n}');
+    }
+  }
 
-  var Backbone = require('backbone');
+  if(!window._){
+    console.log('You need to have underscore previously loaded');
+  }
+  else{
+    _ = window._;
+  }
+  if(!window.Backbone){
+    console.log('You need to have Backbone prevoiusly loaded');
+  }
+  else{
+    Backbone = window.Backbone;
+  }
+  if(!window.d3){
+    console.log('if you want tree, You need to have d3 prevoiusly loaded');
+  }
+
 
   var template = '<header><div id="progress_indicator"></div><h2 id="step_title"></h2><p id="step_instructions"></p></header><div class="current_step_container"></div><footer><div id="buttons"><button id="prev_step_button" class="btn btn-info">Prev:</button><button id="next_step_button" class="btn btn-info">Next:</button></div></footer>';
 
   var template_tree = '<header><div id="progress_indicator"></div><h2 id="step_title"></h2><p id="step_instructions"></p></header><div class="current_step_container"></div><footer><div id="buttons"><button id="prev_step_button" class="btn btn-info">Prev:</button><button id="next_step_button" class="btn btn-info">Next:</button></div><button id="showTree" class="btn btn">Tree</button><div class="tree" id="tree"></div></footer>';
+
+  // var json_stack = [];
 
   var WizardInit = Backbone.View.extend({
 
@@ -21,7 +45,7 @@ define(function(require) {
 
     events: {
       "click #next_step_button"                 : "nextStep",
-      "click #prev_step_button"                 : "prevStep",
+      "click #prev_step_button"                 : "goToStep",
       "click #progress_indicator > label"       : "goToStep",
       "click #showTree"                         : "showTree"
     },
@@ -32,8 +56,14 @@ define(function(require) {
       this.steps = arg.steps;
       this.currentStep = 0;
       this.tree = arg.tree;
+      if(arg.tree.shape){
+        this.shape = arg.tree.shape;
+      }
+      else{
+        this.shape = 'circle';
+      }
       console.log('tree', this.tree);
-      if (this.tree === true){
+      if (this.tree.render === true){
         this.template = template_tree;
       }
       else{
@@ -51,7 +81,7 @@ define(function(require) {
       this.nextStepButton = this.$("#next_step_button");
       this.prevStepButton = this.$("#prev_step_button");
 
-      this.renderCurrentStep();
+      this.renderStep(this.currentStep, true);
       return this;
     },
 
@@ -59,7 +89,7 @@ define(function(require) {
       this.progressIndicator.empty();
       _.each(this.steps, _.bind(function(step) {
         if(step.step_number <= this.currentStep){
-          var el =  '<label data-step="' + step.step_number + '"><title>' + step.title + '</title><span>' + step.step_number + '</span></label>';
+          var el =  '<label data-step="' + step.step_number + '"><span>' + step.step_number + '</span><title>' + step.title + '</title></label>';
           this.progressIndicator.append(el);
         }
       }, this));
@@ -76,16 +106,17 @@ define(function(require) {
 
       this.steps.splice(this.currentStep + 1,0,newstep);
 
-      this.renderCurrentStep();
+      this.renderStep(this.currentStep, true);
     },
 
-    renderCurrentStep: function() {
-      var currentStep = this.steps[this.currentStep];
+    renderStep: function(step_number, addToTree) {
+      console.log('renderStep', step_number, addToTree, this.steps);
+      var currentStep = this.steps[step_number];
       var prevStep;
       if (!this.isFirstStep()){
         prevStep = this.steps[this.currentStep - 1];
       }
-      else if(this.tree === true){
+      else if(this.tree.render === true && addToTree === true){
         window.jsonTree = [{ 
           "name" : this.steps[this.currentStep].title,
           "parent":"null"
@@ -95,12 +126,13 @@ define(function(require) {
 
       this.title.html(currentStep.title);
       this.instructions.html(currentStep.instructions);
-      this.currentView = currentStep.view;
+      this.currentView = new currentStep.view();
       this.currentStepContainer.html(this.currentView.render().el);
 
       this.renderProgressIndicator();
 
       if (prevStep) {
+        this.prevStepButton.attr('data-step', this.currentStep - 1);
         this.prevStepButton.html("Prev: " + prevStep.title).show();
       } else {
         this.prevStepButton.hide();
@@ -114,37 +146,34 @@ define(function(require) {
 
 
     goToStep:function(event){
-      var step = $(event.currentTarget).attr('data-step');
+      var step = parseInt($(event.currentTarget).attr('data-step'));
       console.log('click stepProgress', step);
-      this.renderStep(step);
+      this.prevStep(step);
+
+      this.resetJsonTree();
+
     },
 
-
-    renderStep: function(step_number) {
-      var currentStep = this.steps[step_number];
-      var prevStep;
-      if (!this.isFirstStep()){
-        prevStep = this.steps[this.currentStep - 1];
+    resetJsonTree:function(){
+      $('svg').remove();
+      window.svg = null;
+      window.tree = null;
+      window.dataMap = null;
+      for(var i=0; i < this.currentStep + 1;i++){
+        if(i === 0){
+          window.jsonTree = [{ 
+            "name"    :this.steps[i].title,
+            "parent"  :"null"
+          }];
+        }
+        else{
+          window.jsonTree.push({ 
+            "name"    :this.steps[i].title,
+            "parent"  :this.steps[i-1].title,
+          });
+        }
       }
-      var nextStep = this.steps[this.currentStep + 1];
-
-      this.title.html(currentStep.title);
-      this.instructions.html(currentStep.instructions);
-      this.currentView = currentStep.view;
-      this.currentStepContainer.html(this.currentView.render().el);
-
-      this.renderProgressIndicator();
-
-      if (prevStep) {
-        this.prevStepButton.html("Prev: " + prevStep.title).show();
-      } else {
-        this.prevStepButton.hide();
-      }
-      if (nextStep) {
-        this.nextStepButton.html("Next: " + nextStep.title);
-      } else {
-        this.nextStepButton.html("Finish");
-      }
+      this.createTree();
     },
 
     showTree:function(){
@@ -155,25 +184,35 @@ define(function(require) {
       if (!this.isLastStep()) {
         this.currentStep += 1;
 
-        if(window.jsonTree && this.tree === true){
+        // check if jsontree exist as a global var and if the users wanna show tree
+        if(window.jsonTree && this.tree.render === true){
           console.log('tree found');
           window.jsonTree.push({ 
             "name" : this.steps[this.currentStep].title,
             "parent": this.steps[this.currentStep - 1].title
           });
           this.update();
+
+          //this.drag();
+          
         }
 
-        this.renderCurrentStep();
+        this.renderStep(this.currentStep, true);
       } else {
         this.save();
       }
     },
 
-    prevStep: function() {
-      if (!this.isFirstStep()) {
+    prevStep: function(step) {
+      if(!step){
         this.currentStep -= 1;
-        this.renderCurrentStep();
+        console.log('no hay step definido');
+      }
+      else{
+        this.currentStep = parseInt(step);
+      }
+      if (!this.isFirstStep()) {
+        this.renderStep(this.currentStep, false);
       }
     },
 
@@ -261,20 +300,87 @@ define(function(require) {
         .attr("class", "node")
         .attr("transform", function(d) { 
           return "translate(" + d.y + "," + d.x + ")"; });
+
+      /* DEFINING TYPES OF SHAPES */
      
-      nodeEnter.append("circle")
-        .attr("r", 10)
-        .style("fill", "#fff");
+      if(this.shape == 'circle'){
+        nodeEnter.append("circle")
+          .attr("r", 10)
+          .style("fill", "#fff")
+          .classed({'rect': false, 'circle': true})
+          ;
+      }
+      if(this.shape == 'rect'){
+        //Width and height
+        var w = 50;
+        var h = 20;
+        // var barPadding = 1; 
+        nodeEnter.append("rect")
+         .attr("x", 0)
+         .attr("y", 0)
+         .attr("width", w)
+         .attr("height", h)
+         .attr("fill", "teal")
+         .classed({'rect': true, 'circle': false})
+         ;
+      }
      
       nodeEnter.append("text")
+        // .attr("font-family", "sans-serif")
+        // .attr("font-size", "11px")
+        // .attr("fill", "black")
+        // .attr("text-anchor", "middle")
+        .style("fill-opacity", 1)
         .attr("x", function(d) { 
           return d.children || d._children ? -13 : 13; })
         .attr("dy", ".35em")
         .attr("text-anchor", function(d) { 
           return d.children || d._children ? "end" : "start"; })
         .text(function(d) { return d.name; })
-        .style("fill-opacity", 1);
-     
+        .classed({'text': true})
+        ;
+
+
+      /* INTERACTION FUNCTIONS*/
+
+      // drag function
+      var transX = 50, transY = 0;
+      var theElement = d3.select('svg > g').attr('transform', "translate(" + transX + ", " + transY + ")");
+
+      var addDragging = function (element) {
+        element.call(d3.behavior.drag()
+          .on('drag', function(data) {
+            console.log('dragging', data);
+            transX += d3.event.dx;
+            transY += d3.event.dy;
+            theElement.attr('transform', "translate(" + transX + ", " + transY + ")");
+          })
+        );
+      };
+
+      addDragging(theElement);
+
+      // hover function
+      nodeEnter.on('mouseover', function(d){
+        console.log('mouseover on', d);
+        var nodeSelection = d3.select(this).style({opacity:'0.8'});
+        nodeSelection.select("text").style({opacity:'1.0'});
+      }).on('mouseout', function(d){
+        console.log('mouseout on', d);
+        var nodeSelection = d3.select(this).style({opacity:'1'});
+        nodeSelection.select("text").style({opacity:'1.0'});
+      })
+
+      // click function
+      .on('click', function(d){
+        console.log('click on', d, d3.select(this));
+      })
+
+      ;
+
+     /* END INTERACTION FUNCTIONS */
+
+
       // Declare the links…
       var link = window.svg.selectAll("path.link")
         .data(links, function(d) { return d.target.id; });
@@ -285,8 +391,8 @@ define(function(require) {
         .attr("d", window.diagonal);
 
       console.log('window.jsonTree end', window.jsonTree);
-     
     }
+
   });
 
   return Backbone.View.extend({
@@ -307,7 +413,7 @@ define(function(require) {
           step_number  :        i,
           title        :        WizardSteps[i].title,
           instructions :        WizardSteps[i].intro,
-          view         :        new WizardSteps[i].view()
+          view         :        WizardSteps[i].view
         });
       }
       return this.steps;
@@ -315,7 +421,7 @@ define(function(require) {
 
     render: function() {
       this.wizardMethod();
-      if(this.tree === true){
+      if(this.tree.render === true){
         console.log('tree set to true');
         this.onRenderComplete();
       }
@@ -340,7 +446,7 @@ define(function(require) {
         step_number  :        window.wizard.wizard.currentStep + 1,
         title        :        step.title,
         instructions :        step.intro,
-        view         :        new step.view()
+        view         :        step.view
       });
     },
 

@@ -13,7 +13,7 @@ define(function(require) {
   , template = require('tpl/apps/WizardExample/templates/exampleTpl')
 
   // just for test
-  , Backbone_wizard = require('common/backbone-wizard')
+  , Backbone_wizard = require('wizard')
   //Steps
   , WizardSteps = [
       { view: require('apps/WizardExample/steps/init/view'), title:'init', intro:'init slide'}
@@ -48,7 +48,11 @@ define(function(require) {
       window.wizard = new Backbone_wizard({
         el: self.$el.find('#wizardContainer'),
         steps: WizardSteps,
-        tree:true
+        tree:{
+          render: true,
+          // could be rect || circle, circle buy default if its not defined.
+          shape:'circle'
+        }
       });
 
       return this;

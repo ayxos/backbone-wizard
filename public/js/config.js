@@ -9,7 +9,8 @@ require.config({
     underscore  : "../libs/vendors/underscore/underscore",
     jade        : '../libs/vendors/jade/runtime',
     bootstrap   : '../libs/vendors/bootstrap/bootstrap',
-    d3          : '../libs/vendors/d3/d3'
+    d3          : '../libs/vendors/d3/d3',
+    wizard         : '../backbone-wizard.min'
 
   },
 
@@ -30,6 +31,9 @@ require.config({
     },
     bootstrap:{
       deps: ['jquery']
+    },
+    wizard:{
+      deps:['underscore', 'backbone', 'd3']
     }
   }
 });
