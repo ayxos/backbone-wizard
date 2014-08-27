@@ -70,8 +70,16 @@
 
           ...
           
-          d3          : 'path/to/lib'
+          d3          : 'path/to/d3/lib'
           
+          ...
+
+          shim: {
+              'path/to/backbone-wizard/lib':{
+                deps:['underscore', 'backbone', 'd3']
+              }
+          }
+
           ...
 
         hr
