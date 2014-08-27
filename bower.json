@@ -1,6 +1,6 @@
 {
   "name": "Backbone-wizard",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/cybermarkus1/backbone-wizard.git"
@@ -14,7 +14,7 @@
   ],
   "main": [
     "./public/js/common/backbone-wizard.js",
-    "./backbone-wizard.min.js"
+    "./public/backbone-wizard.min.js"
   ],
   "description": "a Backbone-wizard tool",
   "moduleType": [

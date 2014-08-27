@@ -30,9 +30,7 @@ define(function(require) {
     },
 
     getStep: function(event){
-      event.preventDefault();
-      event.stopPropagation();
-      console.log('changing view');
+      console.log('click on addStep, adding new step');
       if(event.currentTarget.value == 'a'){
         window.wizard.addStep(a);
       }

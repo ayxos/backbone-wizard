@@ -23,7 +23,7 @@ module.exports = function(grunt) {
           preserveComments: 'all'
         },
         files: {
-          './backbone-wizard.min.js': ['public/js/common/backbone-wizard.js']
+          './public/backbone-wizard.min.js': ['public/js/common/backbone-wizard.js']
         }
       }
     },

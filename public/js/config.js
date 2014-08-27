@@ -8,8 +8,11 @@ require.config({
     handlebars  : "../libs/vendors/handlebars/handlebars",
     underscore  : "../libs/vendors/underscore/underscore",
     jade        : '../libs/vendors/jade/runtime',
-    bootstrap : '../libs/vendors/bootstrap/bootstrap',
-    d3          : '../libs/vendors/d3/d3'
+    bootstrap   : '../libs/vendors/bootstrap/bootstrap',
+    d3          : '../libs/vendors/d3/d3',
+    // wiz         : 'common/backbone-wizard',
+    wiz         : '../backbone-wizard.min',
+    ui          : '../libs/vendors/jqueryui/jquery-ui'
 
   },
 
@@ -17,19 +20,26 @@ require.config({
     jquery: {
       exports: '$'
     },
-    backbone:{
-      deps: ['jquery','underscore'],
-      exports: 'Backbone'
-    },
     underscore: {
+      deps:["jquery"],
       exports: '_'
+    },
+    backbone: {
+      deps:["jquery",'underscore'],
+      exports: 'Backbone'
     },
     handlebars: {
       deps: ['backbone'],
       exports: 'Handlebars'
     },
-    bootstrap_3:{
+    bootstrap:{
       deps: ['jquery']
+    },
+    ui:{
+      deps:['jquery']
+    },
+    wiz:{
+      deps:['underscore', 'backbone', 'd3']
     }
   }
 });
