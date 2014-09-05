@@ -262,7 +262,7 @@ module.exports = function(grunt) {
   grunt.registerTask('production', ['bower', 'clean:pre', 'sass', 'copy', 'jade', 'processhtml:prod', 'requirejs:app']);
 
   // default task
-  grunt.registerTask('default', ['bower', 'jshint:all', 'clean:pre', 'copy', 'sass', 'jade', 'processhtml:dev']);
+  grunt.registerTask('default', ['uglify', 'bower', 'jshint:all', 'clean:pre', 'copy', 'sass', 'jade', 'processhtml:dev']);
   // test task
   grunt.registerTask('test', ['jshint', 'jasmine']);
 

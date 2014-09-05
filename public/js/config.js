@@ -10,8 +10,8 @@ require.config({
     jade        : '../libs/vendors/jade/runtime',
     bootstrap   : '../libs/vendors/bootstrap/bootstrap',
     d3          : '../libs/vendors/d3/d3',
-    // wiz         : 'common/backbone-wizard',
-    wiz         : '../backbone-wizard.min',
+    wiz         : 'common/backbone-wizard',
+    // wiz         : '../backbone-wizard.min',
     ui          : '../libs/vendors/jqueryui/jquery-ui'
 
   },

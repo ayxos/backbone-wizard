@@ -1,5 +1,5 @@
 /*!
- * Backbone-wizard v1.4.1 (http://http://ayxos.com/backbone-wizard/)
+ * Backbone-wizard v1.4.3 (http://http://ayxos.com/backbone-wizard/)
  * Copyright 2014 Marco Antonio Pajares Silva.
  * Licensed under MIT
  */
@@ -132,7 +132,12 @@ define(function(require) {
       this.renderProgressIndicator();
 
       if (prevStep) {
-        this.prevStepButton.attr('data-step', this.currentStep - 1);
+        if(currentStep == 1){
+          this.prevStepButton.attr('data-step', 0);
+        }
+        else{
+          this.prevStepButton.attr('data-step', this.currentStep - 1);
+        }
         this.prevStepButton.html("Prev: " + prevStep.title).show();
       } else {
         this.prevStepButton.hide();
@@ -205,7 +210,12 @@ define(function(require) {
 
     prevStep: function(step) {
       if(!step){
-        this.currentStep -= 1;
+        if(step > 0){
+          this.currentStep -= 1;
+        }
+        else{
+          this.currentStep = 0;
+        }
         console.log('no hay step definido');
       }
       else{
@@ -213,6 +223,9 @@ define(function(require) {
       }
       if (!this.isFirstStep()) {
         this.renderStep(this.currentStep, false);
+      }
+      else{
+        this.renderStep(0, false);
       }
     },
 
