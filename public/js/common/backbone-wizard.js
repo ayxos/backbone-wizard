@@ -1,5 +1,5 @@
 /*!
- * Backbone-wizard v1.4.3 (http://http://ayxos.com/backbone-wizard/)
+ * Backbone-wizard v1.4.1 (http://http://ayxos.com/backbone-wizard/)
  * Copyright 2014 Marco Antonio Pajares Silva.
  * Licensed under MIT
  */
@@ -132,12 +132,7 @@ define(function(require) {
       this.renderProgressIndicator();
 
       if (prevStep) {
-        if(currentStep == 1){
-          this.prevStepButton.attr('data-step', 0);
-        }
-        else{
-          this.prevStepButton.attr('data-step', this.currentStep - 1);
-        }
+        this.prevStepButton.attr('data-step', this.currentStep - 1);
         this.prevStepButton.html("Prev: " + prevStep.title).show();
       } else {
         this.prevStepButton.hide();
@@ -186,9 +181,32 @@ define(function(require) {
     },
 
     nextStep: function() {
+
+      if(window.WizardJson && this.currentStep > 0){
+        var aux = $(':input :checked')
+        , arr = [];
+        for(var i =0; i<aux.length;i++){
+          arr.push(aux[i].value);
+        }
+        window.WizardJson.push({
+          name: arr,
+          parent: window.WizardJson[window.WizardJson.length -1].name
+        });
+      }
+      if(!window.WizardJson || (window.WizardJson && this.currentStep === 0)){
+        window.WizardJson = [{
+          'name': this.steps[this.currentStep].title,
+          'parent': 'null'
+        }];
+
+      }
+
+
+
+
+
       if (!this.isLastStep()) {
         this.currentStep += 1;
-
         // check if jsontree exist as a global var and if the users wanna show tree
         if(window.jsonTree && this.tree.render === true){
           console.log('tree found');
@@ -197,9 +215,6 @@ define(function(require) {
             "parent": this.steps[this.currentStep - 1].title
           });
           this.update();
-
-          //this.drag();
-          
         }
 
         this.renderStep(this.currentStep, true);
@@ -210,12 +225,7 @@ define(function(require) {
 
     prevStep: function(step) {
       if(!step){
-        if(step > 0){
-          this.currentStep -= 1;
-        }
-        else{
-          this.currentStep = 0;
-        }
+        this.currentStep -= 1;
         console.log('no hay step definido');
       }
       else{
@@ -223,9 +233,6 @@ define(function(require) {
       }
       if (!this.isFirstStep()) {
         this.renderStep(this.currentStep, false);
-      }
-      else{
-        this.renderStep(0, false);
       }
     },
 
@@ -238,7 +245,16 @@ define(function(require) {
     },
 
     save: function(){
-      console.log('sending form');
+      var aux = $(':input :checked')
+      , arr = [];
+      for(var i =0; i<aux.length;i++){
+        arr.push(aux[i].value);
+      }
+      window.WizardJson.push({
+        name: arr,
+        parent: window.WizardJson[window.WizardJson.length -1].name
+      });
+      console.log('sending form', window.WizardJson);
       // TODO
     },
 
