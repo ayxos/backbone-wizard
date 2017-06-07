@@ -1,13 +1,13 @@
 {
   "name": "Backbone-wizard",
-  "author":"M.A.P.S",
-  "url":"ayxos.com",
+  "author": "M.A.P.S",
+  "url": "ayxos.com",
   "dependencies": {
     "express": "^3.8.0",
     "grunt-bower-task": "^0.3.4",
     "grunt-jade": "^0.4.0",
     "grunt-processhtml": "^0.3.3",
-    "grunt-sass": "^0.12.1",
+    "grunt-sass": "^2.0.0",
     "grunt-template-jasmine-requirejs": "~0.1.10",
     "jade": "^1.5.0",
     "requirejs": "^2.1.11",
