@@ -3,6 +3,7 @@ node_js:
   - 6
 env:
   - MY_VAR=EverythignIsAwesome
+  - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true 
   - CXX=g++-4.8
 addons:
   apt:
