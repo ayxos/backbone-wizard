@@ -1,7 +1,5 @@
 language: node_js
-node_js:
-  - 6
-compiler: gcc
+node_js: 6
 
 env:
   - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true 
@@ -11,22 +9,15 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - gcc-4.7
-      - g++-4.7
+      - g++-4.8
 
 before_install:
   - npm install grunt-cli -g
   - if [ $TRAVIS_OS_NAME == "linux" ]; then
-      export CC="gcc-4.7";
-      export CXX="g++-4.7";
-      export LINK="gcc-4.7";
-      export LINKXX="g++-4.7";
+      export CXX="g++-4.8";
     fi
-  - nvm --version
   - node --version
   - npm --version
-  - gcc --version
-  - g++ --version
 
 install:
   - npm install
