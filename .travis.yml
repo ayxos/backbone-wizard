@@ -5,6 +5,8 @@ env:
   - MY_VAR=EverythignIsAwesome
   - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true 
   - CXX=g++-4.8
+before_script:
+  - npm install grunt-cli -g
 addons:
   apt:
     sources:
