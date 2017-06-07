@@ -31,6 +31,7 @@
     "grunt-newer": "~0.5.4"
   },
   "scripts": {
-    "postinstall": "grunt bower && grunt"
+    "postinstall": "grunt bower && grunt",
+    "test": "grunt jshint"
   }
 }
