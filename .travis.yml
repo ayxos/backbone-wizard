@@ -1,8 +1,10 @@
 language: node_js
-node_js: 6
+node_js:
+  - "stable"
 
 env:
-  - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true 
+  - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true
+  - SKIP_NODE_SASS_TESTS = true 
 
 addons:
   apt:
