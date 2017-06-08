@@ -1,6 +1,8 @@
 Backbone-wizard
 ===================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ayxos/backbone-wizard.svg)](https://greenkeeper.io/)
+
 live version = http://ayxos.github.io/backbone-wizard/
 
 A tool for create dinamic Wizards using Backbone
