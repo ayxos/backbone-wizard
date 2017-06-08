@@ -24,9 +24,3 @@ install:
 
 script:
   - npm test
-
-cache:
-  directories:
-    - $HOME/.node-gyp
-    - $HOME/.npm
-    - node_modules
