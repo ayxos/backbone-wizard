@@ -1,28 +1,6 @@
 language: node_js
 node_js:
-  - "stable"
-
-env:
-  - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true
-  - SKIP_NODE_SASS_TESTS = true 
-
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
-
-before_install:
-  - npm install grunt-cli -g
-  - if [ $TRAVIS_OS_NAME == "linux" ]; then
-      export CXX="g++-4.8";
-    fi
-  - node --version
-  - npm --version
-
-install:
-  - npm install
+  - 0.12
 
 script:
   - npm test
