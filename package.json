@@ -10,7 +10,7 @@
     "grunt-sass": "^2.0.0",
     "grunt-template-jasmine-requirejs": "~0.2.3",
     "jade": "^1.5.0",
-    "requirejs": "^2.1.11",
+    "requirejs": "^2.3.4",
     "rjs-build-analysis": "0.0.3"
   },
   "engines": {
